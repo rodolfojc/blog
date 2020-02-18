@@ -7,7 +7,10 @@ export const BlogProvider = ({ children }) => {
     const [blogPosts, setBlogPosts] = useState([]);
 
     const addBlogPost = () => {
-        setBlogPosts([... blogPosts, {title: `Blog Post #${blogPosts.length + 1}`}]);
+        setBlogPosts([
+            ... blogPosts, 
+            {title: `Blog Post #${blogPosts.length + 1}`}
+        ]);
     };
 
     return (
