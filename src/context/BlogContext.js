@@ -17,13 +17,13 @@ const blogReducer = (state, action) => {
             });
         case 'delete_blogpost':
             return state.filter(blogPost => blogPost.id !== action.payload);
-        case 'add_blogpost':
-            return [...state, {
-                id: Math.floor(Math.random()*9999), 
-                title: action.payload.title,
-                content: action.payload.content
-            }
-        ]
+        // case 'add_blogpost':
+        //     return [...state, {
+        //         id: Math.floor(Math.random()*9999), 
+        //         title: action.payload.title,
+        //         content: action.payload.content
+        //     }
+        // ]
         default:
             return state;
     }
@@ -50,7 +50,9 @@ const getBlogPosts = dispatch => {
 };
 
 const deleteBlogPost = dispatch => {
-    return (id) => {
+    return async (id) => {
+        await jsonServer.delete(`/blogposts/${id}`);
+        
         dispatch({type: 'delete_blogpost', payload: id});
     };
 };
